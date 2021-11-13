@@ -1,23 +1,27 @@
-import heart from '../images/heart.svg';
-import trash from '../images/trash.svg';
+import heartImage from '../images/heart.svg';
+import trashImage from '../images/trash.svg';
 
-function Card(props) {
+function Card({
+    cardId,
+    card,
+    onCardClick
+}) {
 
     function handleCardClick () {
-        props.onCardClick(props.card.name, props.card.link)
+        onCardClick(card.name, card.link)
     }
 
     return (
-        <li key={props.card._id} className="element">
-            <img src={trash} alt="" className="element__trash" />
-            <img className="element__image" src={props.card.link} alt="" onClick={handleCardClick} />
+        <li key={card._id} className="element">
+            <img src={trashImage} alt="" className="element__trash" />
+            <img className="element__image" src={card.link} alt="" onClick={handleCardClick} />
             <div className="element__info">
-                <h2 className="element__text">{props.card.name}</h2>
+                <h2 className="element__text">{card.name}</h2>
                 <div className="element__favorite-container">
                     <button className="element__favorite-button" type="button">
-                        <img className="element__favorite" src={heart} alt="heart"/>
+                        <img className="element__favorite" src={heartImage} alt="heart Image"/>
                     </button>
-                    <p className="element__favorite-count">{props.card.likes.length}</p>
+                    <p className="element__favorite-count">{card.likes.length}</p>
                 </div>
             </div>
         </li>
