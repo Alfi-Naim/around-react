@@ -1,4 +1,4 @@
-# Project 10: Around The U.S. React
+# Project 10-11: Around The U.S. React
 
 [Link to the page](https://alfonzapps.github.io/around-react/)
 
