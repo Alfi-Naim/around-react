@@ -1,25 +1,40 @@
 import heartImage from '../images/heart.svg';
 import trashImage from '../images/trash.svg';
+import { useContext } from "react";
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function Card({
     cardId,
     card,
-    onCardClick
+    onCardClick,
+    onCardLike,
+    onCardDelete
 }) {
+    const currentUser = useContext(CurrentUserContext);
 
-    function handleCardClick () {
+    const isOwn = card.owner._id === currentUser._id;
+    const cardDeleteButtonClassName = (
+        `element__trash ${isOwn ? 'element__trash_visible' : ''}`
+    );
+
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const cardLikeButtonClassName = (
+        `element__favorite ${isLiked ? 'element__favorite_active' : ''}`
+    ); 
+
+    function handleCardClick() {
         onCardClick(card.name, card.link)
     }
 
     return (
         <li key={card._id} className="element">
-            <img src={trashImage} alt="" className="element__trash" />
+            <img src={trashImage} alt="" className={cardDeleteButtonClassName} onClick={() => onCardDelete(card)} />
             <img className="element__image" src={card.link} alt="" onClick={handleCardClick} />
             <div className="element__info">
                 <h2 className="element__text">{card.name}</h2>
                 <div className="element__favorite-container">
                     <button className="element__favorite-button" type="button">
-                        <img className="element__favorite" src={heartImage} alt="heart Image"/>
+                        <img className={cardLikeButtonClassName} src={heartImage} onClick={() => onCardLike(card)} alt="heart Image" />
                     </button>
                     <p className="element__favorite-count">{card.likes.length}</p>
                 </div>
