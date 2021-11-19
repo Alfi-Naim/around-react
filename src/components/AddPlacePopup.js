@@ -37,11 +37,11 @@ function AddPlacePopup({
             onSubmit={handleSubmit}>
 
             <label className="popup__form-field">
-                <input onChange={handleNameChange} className="popup__input" type="text" id="title-input" name="name" placeholder="Title" defaultValue={name}
+                <input onChange={handleNameChange} className="popup__input" type="text" id="title-input" name="name" placeholder="Title" Value={name}
                     minLength="1" maxLength="30" required />
                 <span className="popup__error title-input-error"></span>
             </label><label className="popup__form-field">
-                <input onChange={handleLinkChange} className="popup__input" type="url" id="url-input" name="link" placeholder="Image link" defaultValue={link}
+                <input onChange={handleLinkChange} className="popup__input" type="url" id="url-input" name="link" placeholder="Image link" Value={link}
                     required />
                 <span className="popup__error url-input-error"></span>
             </label>
