@@ -27,7 +27,7 @@ function Card({
     }
 
     return (
-        <li key={card._id} className="element">
+        <li className="element">
             <img src={trashImage} alt="" className={cardDeleteButtonClassName} onClick={() => onCardDelete(card)} />
             <img className="element__image" src={card.link} alt="" onClick={handleCardClick} />
             <div className="element__info">
