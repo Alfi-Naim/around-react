@@ -43,12 +43,16 @@ function App() {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        }); //I caught all the errors in the api class...
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     function handleCardDelete(card) {
         api.deleteCard(card._id).then(() => {
             setCards(cards.filter((newCard) => newCard._id !== card._id))
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
@@ -56,6 +60,8 @@ function App() {
         api.setUserInfo({ name, about }).then((res) => {
             setCurrentUser(res);
             closeAllPopups();
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
@@ -63,6 +69,8 @@ function App() {
         api.setUserAvatar({ link: avatar }).then((res) => {
             setCurrentUser(res);
             closeAllPopups();
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
@@ -70,6 +78,8 @@ function App() {
         api.addCard({ name, link }).then((newCard) => {
             setCards([newCard, ...cards]);
             closeAllPopups();
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
