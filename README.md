@@ -1,6 +1,6 @@
 # Project 10-11: Around The U.S. React
 
-[Link to the page](https://alfonzapps.github.io/around-react/)
+[Link to the page](https://alfonsNaim.github.io/around-react/)
 
 
 # Getting Started with Create React App
