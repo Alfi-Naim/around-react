@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
+
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
-import api from "../utils/api.js";
 import ImagePopup from "./ImagePopup.js";
+
+import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
 function App() {
@@ -15,9 +18,33 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
     const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+
     const [selectedCard, setSelectedCard] = useState({ name: "", link: "" });
     const [cards, setCards] = useState([]);
+
     const [currentUser, setCurrentUser] = useState({});
+
+    useEffect(() => {
+        const closePopupByEscape = (evt) => {
+            if (evt.key === "Escape") {
+                closeAllPopups();
+            }
+        };
+
+        document.addEventListener("keydown", closePopupByEscape);
+        return () => document.removeEventListener("keydown", closePopupByEscape);
+    }, []);
+
+    useEffect(() => {
+        const closePopupByOutsideClick = (evt) => {
+            if (evt.target.classList.contains("popup")) {
+                closeAllPopups();
+            }
+        };
+
+        document.addEventListener("click", closePopupByOutsideClick);
+        return () => document.removeEventListener("keydown", closePopupByOutsideClick);
+    }, []);
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);

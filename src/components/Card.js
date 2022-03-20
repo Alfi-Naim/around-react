@@ -10,6 +10,8 @@ function Card({
     onCardLike,
     onCardDelete
 }) {
+
+    console.log(card);
     const currentUser = useContext(CurrentUserContext);
 
     const isOwn = card.owner._id === currentUser._id;

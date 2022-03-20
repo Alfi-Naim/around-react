@@ -12,6 +12,7 @@
     background-size: 40px 40px;
     border: none;
     cursor: pointer;
+    transition: opacity .3s ease;
 }   
 
 .popup__close-icon:hover {
